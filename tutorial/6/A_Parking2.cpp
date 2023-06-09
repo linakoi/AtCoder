@@ -1,24 +1,25 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-bool isGoodInteger(int n) {
-    string str = to_string(n);
+bool isGoodInteger(int N) {
+    string number = to_string(N);
+    char prep = number[0];
     int count = 1;
-    char prev = str[0];
-    
-    for (int i = 1; i < str.length(); i++) {
-        if (str[i] == prev) {
+
+    for(int i = 1;i < number.length();i++) {
+        if(prep == number[i]) {
             count++;
-            if (count >= 3) {
+            if(count >= 3) {
                 return true;
             }
         } else {
             count = 1;
-            prev = str[i];
+            prep = number[i];
         }
     }
     return false;
 }
+
 
 int main() {
     int N;
