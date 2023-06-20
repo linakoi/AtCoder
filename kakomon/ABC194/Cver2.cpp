@@ -1,23 +1,26 @@
 #include <bits/stdc++.h>
+
+#define rep(i, s, n) for (int i = (int)(s); i < (int)(n); ++i)
+
 using namespace std;
 
 int main() {
-    int N;
-    cin >> N;
-    int A[N];
-    for(int i = 0;i < N;i++) {
-        cin >> A[i];
+    int n;
+    cin >> n;
+
+    vector<int> a(n);
+    rep(i, 0, n) cin >> a[i];
+
+    long long ans = 0;
+    long long sum = 0;
+    rep(i, 0, n) {
+        ans += (long long)(n-1) * a[i] * a[i];
+
+        if(i != n-1) {
+            sum += a[n-i-1];
+            ans += -2 * a[n-i-2] * sum;
+        } 
     }
 
-    int sum = 0;
-    for(int i = 0;i < N;i++) {
-        sum += A[i]*A[i]*(N-1);
-    }
-    
-    for(int i = 0;i < N-1;i++) {
-        for(int j = i+1;j < N;j++) {
-            sum -= 2*A[i]*A[j];
-        }
-    }
-    cout << sum << endl;
+    cout << ans << endl;
 }
